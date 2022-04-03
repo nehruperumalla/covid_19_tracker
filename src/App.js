@@ -15,12 +15,10 @@ class App extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('Component Did Mount Started')
         const fetchedData = await fetchData();
         const fetchedStateData = await fetchStateData();
         const fetchedDistrictData = await fetchDistrictData();
         this.setState({ data: fetchedData, stateData: fetchedStateData, districtData: fetchedDistrictData });
-        console.log('Component did mount ended', fetchedDistrictData)
     }
 
     handleCountryChange = async (country) => {
@@ -33,7 +31,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log('Render Started', this.state)
         const { data, country, stateData, districtData, showLocalData } = this.state;
         const InternationalData = (<div className={styles.container}>
             <h1>World</h1>

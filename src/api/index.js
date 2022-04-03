@@ -2,10 +2,6 @@ import axios from 'axios';
 
 const url = 'https://covid19.mathdro.id/api';
 const nation_url = 'https://data.covid19india.org/v4/min/data.min.json';
-// const districturl = 'https://api.covid19india.org/state_district_wise.json';
-// const url = '/api';
-// const stateurl = '/data.json';
-// const districturl = '/state_district_wise.json'
 
 export const fetchData = async (country) => {
     let changableUrl = url;
@@ -22,10 +18,8 @@ export const fetchData = async (country) => {
 }
 
 export const fetchStateData = async () => {
-    // fetchDistrictData()
     try {
         const { data } = await axios.get(nation_url);
-        console.log(data)
         const andhraData = data['AP']['total'];
         const modifiedData = { lastUpdate: new Date(), active: { value: parseInt(andhraData.tested) }, confirmed: { value: parseInt(andhraData.confirmed) }, deaths: { value: parseInt(andhraData.deceased) }, recovered: { value: parseInt(andhraData.recovered) } }
         return modifiedData;
